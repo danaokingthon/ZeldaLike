@@ -402,13 +402,13 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -5382621211974072357}
-    m_Duration: 5
+    m_Duration: 5.866666666666666
     m_TimeScale: 1
     m_ParentTrack: {fileID: 9046896105013463891}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: -1
+    m_BlendOutDuration: 2.5499999999999994
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -468,15 +468,15 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: DollyIn
   - m_Version: 1
-    m_Start: 5
+    m_Start: 3.316666666666667
     m_ClipIn: 0
     m_Asset: {fileID: 40594394599229244}
-    m_Duration: 5
+    m_Duration: 6.6833333333333345
     m_TimeScale: 1
     m_ParentTrack: {fileID: 9046896105013463891}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: -1
+    m_BlendInDuration: 2.5499999999999994
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
