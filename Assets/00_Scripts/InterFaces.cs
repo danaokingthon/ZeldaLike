@@ -4,18 +4,22 @@ public interface IDamageable
 {
     void TakeDamage(float damage);
 }
+
 public interface IHealable
-{
-    void Heal(float amount);
-}
+    {
+        void Heal(float amount);
+    }
+    
+
 public interface Interactuable
-{
-    void Interact();
-}
+    {
+        void Interact();
+    }
+
 public interface ICollectable
-{
-    void Collect();
-}
+    {
+        void Collect();
+    }
 
 
   
