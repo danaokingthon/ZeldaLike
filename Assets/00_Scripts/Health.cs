@@ -13,6 +13,7 @@ public class Health : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log($"{gameObject.name} HP: {currentHealth}");
         if (currentHealth <= 0f)
         {
             Die();
