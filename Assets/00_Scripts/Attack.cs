@@ -51,4 +51,11 @@ public class Attack : MonoBehaviour
         animationCharacter.isAttacking = false;
         animationCharacter.animator.SetBool("Attack", animationCharacter.isAttacking);
     }   
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+    
 }
