@@ -21,7 +21,7 @@ public class InputHandler : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         characterController.Move(new Vector2(h, v));
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetMouseButtonDown(0))
         {
             attack.PerformAttack();
         }

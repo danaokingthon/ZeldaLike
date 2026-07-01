@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
-    private float currentHealth;
+    [SerializeField] float currentHealth;
 
     private void Awake()
     {
@@ -19,10 +20,18 @@ public class Health : MonoBehaviour, IDamageable
             Die();
         }
     }
+    
     private void Die()
     {
-        // Aquí puedes agregar animaciones de muerte, efectos, etc.
         Debug.Log($"{gameObject.name} ha muerto.");
-        Destroy(gameObject);
+
+        if (CompareTag("Player"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

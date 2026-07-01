@@ -10,51 +10,62 @@ public enum EnemyState
 public class Goblin : Enemy
 {
     public NavMeshAgent navMeshAgent;
-
     public Transform player;
-    public EnemyState currentState = EnemyState.Idle; 
-        
+
+    public EnemyState currentState = EnemyState.Idle;
+
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float attackCooldown = 1f;
+    private float nextAttackTime = 0f;
 
     void Update()
     {
         switch (currentState)
         {
             case EnemyState.Idle:
-                // Comportamiento de patrulla o espera
                 break;
+
             case EnemyState.Chasing:
                 ChasePlayer();
                 break;
+
             case EnemyState.Attacking:
-                // Comportamiento de ataque
                 break;
         }
-       
     }
+
     void ChasePlayer()
     {
-        // Lógica para perseguir al jugador
         navMeshAgent.SetDestination(player.position);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
+            return;
+
+        currentState = EnemyState.Chasing;
+
+        if (Time.time >= nextAttackTime)
         {
-            currentState = EnemyState.Chasing;
-            Debug.Log("Goblin is chasing the player!");
+            IDamageable damageable = other.GetComponent<IDamageable>();
+
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+                Debug.Log("Goblin golpeó al jugador");
+
+                nextAttackTime = Time.time + attackCooldown;
+            }
         }
     }
+
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             currentState = EnemyState.Idle;
-            Debug.Log("Goblin stopped chasing the player.");
+            Debug.Log("Goblin dejó de perseguir al jugador.");
         }
     }
-
-
-
-
 }

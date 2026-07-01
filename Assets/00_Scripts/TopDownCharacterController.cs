@@ -55,11 +55,11 @@ public class TopDownCharacterController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if(animationCharacter.isAttacking) 
+        /*if(animationCharacter.isAttacking) 
         {
             _rb.linearVelocity = Vector3.zero;
             return; // Evitar moverse durante el ataque
-        }
+        }*/
         // Preservar velocidad Y (gravedad) y reemplazar solo XZ
         Vector3 targetVelocity = _moveDir * moveSpeed;
         targetVelocity.y = _rb.linearVelocity.y;
