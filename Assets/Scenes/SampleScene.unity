@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 10
+  currentHealth: 0
 --- !u!136 &255701371
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2319,6 +2320,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &802717126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 802717128}
+  - component: {fileID: 802717127}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &802717127
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802717126}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &802717128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802717126}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1466305324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &807479323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5017971254852617305, guid: f092c218af5ccf84daa4891e9d7b923d, type: 3}
@@ -2928,8 +2982,9 @@ GameObject:
   - component: {fileID: 990893027}
   - component: {fileID: 990893028}
   - component: {fileID: 990893029}
+  - component: {fileID: 990893030}
   m_Layer: 7
-  m_Name: Character
+  m_Name: PLAYER
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3043,6 +3098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dc1851d8152394383f58fe5c5fca45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack
+  attackRange: 1.5
   damage: 10
   damageCollider: {fileID: 1620472104}
   attackCooldown: 0.4
@@ -3075,6 +3131,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interact
   interactCollider: {fileID: 1620472104}
+--- !u!114 &990893030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990893021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d1ea6e839a0bd4d83c6532ffa1a5bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 70
+  currentHealth: 0
 --- !u!1 &996547867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 867a0c8a6ed74ae48b6a5d5b86bc1480, type: 3}
@@ -4197,6 +4267,8 @@ GameObject:
   - component: {fileID: 1466305323}
   - component: {fileID: 1466305322}
   - component: {fileID: 1466305325}
+  - component: {fileID: 1466305326}
+  - component: {fileID: 1466305327}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -4219,6 +4291,8 @@ MonoBehaviour:
   navMeshAgent: {fileID: 1466305323}
   player: {fileID: 990893022}
   currentState: 0
+  damage: 10
+  attackCooldown: 1
 --- !u!195 &1466305323
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4229,7 +4303,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.27
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -4255,6 +4329,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1978008615}
+  - {fileID: 802717128}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1466305325
@@ -4278,6 +4353,36 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.64
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1466305326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466305321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d1ea6e839a0bd4d83c6532ffa1a5bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 40
+  currentHealth: 0
+--- !u!114 &1466305327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466305321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74dc1851d8152394383f58fe5c5fca45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attack
+  attackRange: 2
+  damage: 10
+  damageCollider: {fileID: 802717127}
+  attackCooldown: 2.7
 --- !u!1 &1466462720
 GameObject:
   m_ObjectHideFlags: 0

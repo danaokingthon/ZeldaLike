@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour, IDamageable
@@ -27,11 +28,17 @@ public class Health : MonoBehaviour, IDamageable
 
         if (CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(RestartGame());
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
